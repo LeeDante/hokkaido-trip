@@ -1,136 +1,67 @@
 
 <!DOCTYPE html>
-
 <html lang="zh-Hant">
 <head>
-<meta charset="utf-8"/>
-<title>Day 1 - 北海道自駕旅遊</title>
-<link href="css/style.css" rel="stylesheet"/>
+  <meta charset="UTF-8">
+  <title>Day 1：札幌接機與入住 NUPKA Hanare</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<nav class="sidebar">
-<ul>
-<li><a href="index.html">0808 第一天<br/>[台灣] → [北海道]</a></li>
-<li><a href="day2.html">0809 第二天<br/>[帶廣] → [釧路]</a></li>
-<li><a href="day3.html">0810 第三天<br/>[摩周湖] → [阿寒湖]</a></li>
-</ul>
-</nav>
-<header>
-<div class="day-header-info"><p>📅 日期：2025/08/08（五）</p><p class="child-note">小衡心裡話：今天有什麼讓你覺得特別的事情呢？你可以寫下你的感受喔～</p></div></header>
-<span></span><a class="next" href="day2.html">▶ 下一天</a>
-<section>
-<h2>📍 行程節點</h2>
-<ul>
-<li>16:00 租車 → 18:19 抵達 NUPKA Hanare</li>
-<li>19:30~19:45 飯店旁用餐 Indian Machinaka</li>
-</ul>
-</section>
-<section>
-<h2>🍛 晚餐推薦：Indian Machinaka</h2>
-<ul>
-<li>大人1：インデアンカレー（牛肉咖哩）＋カツ＋チーズ，共 ¥950</li>
-<li>大人2：チキンカレー 或 エビカレー，共 ¥750～¥850</li>
-<li>小孩：ハンバーグカレー（漢堡排咖哩）¥604</li>
-</ul>
-<p>冷凍咖哩包不能網購只能現場買，一人限購50份，這邊的人到底是多愛吃？</p>
-<img alt="Indian Machinaka 咖哩示意圖" src="images/indian_curry_placeholder.jpg" width="400"/>
-</section>
-<section>
-<h2>🏨 住宿資訊</h2>
-<p>NUPKA Hanare（努普卡哈納雷）</p>
-<img alt="NUPKA Hanare 示意圖" src="images/hotel_nupka_placeholder.jpg" width="400"/>
-</section>
-<footer>
-<p>© 2025 北海道自駕旅遊 - LeeDante</p>
-</footer>
-<section>
-<h2>💬 小衡心情留言區</h2>
-<textarea id="note" placeholder="今天有什麼話想說嗎？" rows="4" style="width:600px;margin-bottom:1em;"></textarea><br/>
-<button onclick="saveNote()">💾 儲存留言</button>
-</section>
-<section>
-<h2>🎨 小衡手寫塗鴉區</h2>
-<canvas height="300" id="canvas" style="border:1px solid #ccc;" width="600"></canvas><br/>
-<button onclick="clearCanvas()">🧹 清除畫面</button>
-<button onclick="saveCanvas()">📥 儲存圖像</button>
-<button onclick="shareCanvas()">📤 分享圖片</button>
-</section>
-<script>
-// ====== 手寫塗鴉區 ======
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
-let painting = false;
+  <nav>
+    <h3>行程導航</h3>
+    <ul>
+      <li><a href="index.html">0808 第一天<br>[台灣] → [北海道]</a></li>
+      <li><a href="day2.html">0809 第二天<br>[帶廣] → [釧路]</a></li>
+      <li><a href="day3.html">0810 第三天<br>[摩周湖] → [阿寒湖]</a></li>
+    </ul>
+  </nav>
+  <main>
+    <h1>
+      <a href="#">⬅ 前一天</a>
+      <span>📅 Day 1：札幌接機與入住 NUPKA Hanare</span>
+      <a href="day2.html">下一天 ➡</a>
+    </h1>
 
-function startPosition(e) {
-    painting = true;
-    draw(e);
-}
-function endPosition() {
-    painting = false;
-    ctx.beginPath();
-}
-function draw(e) {
-    if (!painting) return;
-    ctx.lineWidth = 3;
-    ctx.lineCap = "round";
-    const rect = canvas.getBoundingClientRect();
-    const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
-    const y = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
-    ctx.lineTo(x, y);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-}
-canvas.addEventListener("mousedown", startPosition);
-canvas.addEventListener("mouseup", endPosition);
-canvas.addEventListener("mousemove", draw);
-canvas.addEventListener("touchstart", startPosition);
-canvas.addEventListener("touchend", endPosition);
-canvas.addEventListener("touchmove", draw);
+    <div class="day-header-info">
+      <p>📅 日期：2025/08/08（五）</p>
+      <p class="child-note"><strong>小衡心裡話：</strong><br>今天有什麼讓你覺得特別的事情呢？你可以寫下你的感受喔～</p>
+    </div>
 
-function clearCanvas() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-}
-function saveCanvas() {
-    const link = document.createElement('a');
-    link.download = 'canvas_drawing.png';
-    link.href = canvas.toDataURL();
-    link.click();
-}
-function shareCanvas() {
-    canvas.toBlob(function(blob) {
-        const file = new File([blob], "canvas_drawing.png", { type: "image/png" });
-        if (navigator.canShare && navigator.canShare({ files: [file] })) {
-            navigator.share({
-                files: [file],
-                title: '我的塗鴉作品',
-                text: '這是我在旅程中的手繪分享！'
-            }).catch((error) => console.log('分享失敗', error));
-        } else {
-            alert("裝置不支援分享功能，請手動下載圖片");
-        }
-    });
-}
+    <section class="card">
+      <h2>✈️ 飛行 & 抵達</h2>
+      <p>今天從台灣出發，順利抵達北海道札幌，租車接機後入住 NUPKA Hanare。</p>
+    </section>
 
-// ====== 留言儲存區 ======
-const note = document.getElementById('note');
-const noteKey = location.pathname.includes("day2") ? "note_day2" :
-                location.pathname.includes("day3") ? "note_day3" : "note_day1";
-note.value = localStorage.getItem(noteKey) || "";
-note.addEventListener("input", () => {
-    localStorage.setItem(noteKey, note.value);
-});
-function saveNote() {
-    const text = note.value;
-    const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = "note.txt";
-    link.click();
-}
-</script>
-<div class="back-to-top">
-<a href="#">⬆ 回頂端</a>
-</div>
+    <section class="card">
+      <h2>🍽️ 晚餐：近隣食堂</h2>
+      <p>第一晚簡單用餐，適應天氣與時差，準備迎接接下來的冒險旅程！</p>
+    </section>
+
+    <section class="note-area">
+      <h2>📝 小衡心情留言板</h2>
+      <textarea id="note"></textarea>
+      <br>
+      <button onclick="saveNote()">💾 儲存留言</button>
+    </section>
+
+    <section class="canvas-area">
+      <h2>🎨 小衡手寫塗鴉區</h2>
+      <canvas id="drawCanvas" width="300" height="200" style="border:1px solid #ccc;"></canvas>
+      <br>
+      <button onclick="undo()">↩️ 回上一步</button>
+      <button onclick="clearCanvas()">🧹 清除畫面</button>
+      <button onclick="saveCanvas()">💾 儲存圖像</button>
+      <button onclick="shareCanvas()">📤 分享圖片</button>
+    </section>
+
+    <div class="back-to-top">
+      <a href="#">⬆ 回頂端</a>
+    </div>
+
+    <footer>
+      © 2025 北海道自駕旅遊 - LeeDante
+    </footer>
+    <script src="js/day1.js"></script>
+  </main>
 </body>
 </html>

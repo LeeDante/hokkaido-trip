@@ -1,92 +1,50 @@
 
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 180px;
-    height: 100%;
-    background-color: #ececec;
-    padding-top: 1em;
-    overflow-y: auto;
-    font-size: 0.9em;
-}
-.sidebar ul {
-    list-style: none;
-    padding-left: 1em;
-}
-.sidebar a {
-    display: block;
-    padding: 0.5em 0.5em;
-    color: #2c3e50;
-    text-decoration: none;
-}
-.sidebar a:hover {
-    background-color: #dcdcdc;
-}
-
 body {
-    margin-left: 200px;
-    font-family: "Noto Sans TC", sans-serif;
-    line-height: 1.6;
-    max-width: 900px;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #fefefe;
+    display: flex;
+}
+
+nav {
+    width: 240px;
+    background-color: #f1f1f1;
+    padding: 1em;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+main {
+    flex: 1;
     padding: 2em;
-    background-color: #f9f9f9;
-    color: #333;
 }
 
-h1, h2 {
-    color: #2c3e50;
+h1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5em;
 }
 
-header, footer {
-    text-align: center;
-    margin-bottom: 2em;
-}
-
-img {
-    margin-top: 1em;
-    max-width: 100%;
-    height: auto;
+.day-header-info {
+    background-color: #f0f8ff;
+    border-left: 6px solid #4ea0f3;
+    padding: 1em;
+    margin: 1.5em 0;
     border-radius: 8px;
 }
 
 .child-note {
-    font-style: italic;
-    color: #666;
-    background-color: #fff8dc;
+    background-color: #fffbe6;
+    border-left: 6px solid #f0c040;
     padding: 1em;
-    border-left: 4px solid #f4a261;
-    margin: 1.5em 0;
-    text-align: left;
-}
-
-.nav-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1em;
-}
-.nav-wrapper h1 {
-    margin: 0;
-    font-size: 1.5em;
-}
-.nav-wrapper a {
-    text-decoration: none;
-    font-weight: bold;
-    color: #2c3e50;
-    padding: 0.4em 1em;
-    background-color: #f0f0f0;
-    border-radius: 4px;
-}
-
-.day-header-info {
-    text-align: left;
     margin-top: 1em;
-    margin-bottom: 2em;
+    border-radius: 8px;
 }
 
-/* 區塊卡片樣式 */
-section {
+section.card {
     background-color: #ffffff;
     border: 1px solid #ddd;
     border-radius: 10px;
@@ -95,51 +53,42 @@ section {
     box-shadow: 2px 2px 8px rgba(0,0,0,0.05);
 }
 
-/* 留言區塊背景 */
-section:has(#note),
-section:has(#canvas) {
-    background-color: #fefcf7;
-}
-
-/* 回頂端按鈕 */
-.back-to-top {
-    text-align: right;
+footer {
+    text-align: center;
+    font-size: 0.9em;
+    color: #666;
     margin-top: 3em;
 }
+
+.note-area, .canvas-area {
+    background-color: #fff8dc;
+    border-left: 6px solid #f4c542;
+    border-radius: 8px;
+    padding: 1em;
+    margin-bottom: 2em;
+}
+
+textarea {
+    width: 100%;
+    height: 120px;
+    font-size: 1em;
+    padding: 0.5em;
+}
+
+.back-to-top {
+    text-align: right;
+    margin-top: 2em;
+}
 .back-to-top a {
-    font-size: 0.9em;
     text-decoration: none;
     background-color: #eee;
-    padding: 0.4em 0.8em;
+    padding: 0.5em 1em;
     border-radius: 4px;
     color: #333;
 }
-.back-to-top a:hover {
-    background-color: #ddd;
-}
 
-.day-header-info {
-    display: block;
-    text-align: left;
-    margin-top: 1em;
-    margin-bottom: 2em;
-    padding: 1em;
-    background-color: #f8f8ff;
-    border-left: 4px solid #a1c4fd;
-}
 
-.day-header-info {
-    display: block;
-    margin: 2em 0;
-    padding: 1.2em;
-    background-color: #f0f8ff;
-    border-left: 6px solid #4ea0f3;
-    border-radius: 6px;
-    font-size: 1em;
-}
-.child-note {
-    font-style: italic;
-    color: #555;
-    margin-top: 0.8em;
-    line-height: 1.6;
+h1 span {
+    font-size: 1.5em;
+    font-weight: bold;
 }
