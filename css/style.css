@@ -78,3 +78,42 @@ img {
     background-color: #f0f0f0;
     border-radius: 4px;
 }
+
+.day-header-info {
+    text-align: left;
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+
+/* 區塊卡片樣式 */
+section {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 1.5em;
+    margin-bottom: 2em;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.05);
+}
+
+/* 留言區塊背景 */
+section:has(#note),
+section:has(#canvas) {
+    background-color: #fefcf7;
+}
+
+/* 回頂端按鈕 */
+.back-to-top {
+    text-align: right;
+    margin-top: 3em;
+}
+.back-to-top a {
+    font-size: 0.9em;
+    text-decoration: none;
+    background-color: #eee;
+    padding: 0.4em 0.8em;
+    border-radius: 4px;
+    color: #333;
+}
+.back-to-top a:hover {
+    background-color: #ddd;
+}
