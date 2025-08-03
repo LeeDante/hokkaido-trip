@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>Day 1：札幌接機與入住 NUPKA Hanare</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav>
+    <h3>行程導航</h3>
+    <ul>
+      <li><a href="index.html">0808 第一天<br>[台灣] → [北海道]</a></li>
+      <li><a href="day2.html">0809 第二天<br>[帶廣] → [釧路]</a></li>
+      <li><a href="day3.html">0810 第三天<br>[摩周湖] → [阿寒湖]</a></li>
+    </ul>
+  </nav>
+  <main>
+    <h1>
+      <a href="#">⬅ 前一天</a>
+      <span>📅 Day 1：札幌接機與入住 NUPKA Hanare</span>
+      <a href="day2.html">下一天 ➡</a>
+    </h1>
+
+    <div class="day-header-info">
+      <p>📅 日期：2025/08/08（五）</p>
+      <p class="child-note"><strong>小衡心裡話：</strong><br>今天有什麼讓你覺得特別的事情呢？你可以寫下你的感受喔～</p>
+    </div>
+
+    <section class="card">
+      <h2>✈️ 飛行 & 抵達</h2>
+      <p>今天從台灣出發，順利抵達北海道札幌，租車接機後入住 NUPKA Hanare。</p>
+    </section>
+
+    <section class="card">
+      <h2>🍽️ 晚餐：近隣食堂</h2>
+      <p>第一晚簡單用餐，適應天氣與時差，準備迎接接下來的冒險旅程！</p>
+    </section>
+
+    <section class="note-area">
+      <h2>📝 小衡心情留言板</h2>
+      <textarea id="note"></textarea>
+      <br>
+      <button onclick="saveNote()">💾 儲存留言</button>
+    </section>
+
+    <section class="canvas-area">
+      <h2>🎨 小衡手寫塗鴉區</h2>
+      <canvas id="drawCanvas" width="300" height="200" style="border:1px solid #ccc;"></canvas>
+      <br>
+      <button onclick="undo()">↩️ 回上一步</button>
+      <button onclick="clearCanvas()">🧹 清除畫面</button>
+      <button onclick="saveCanvas()">💾 儲存圖像</button>
+      <button onclick="shareCanvas()">📤 分享圖片</button>
+    </section>
+
+    <div class="back-to-top">
+      <a href="#">⬆ 回頂端</a>
+    </div>
+
+    <footer>
+      © 2025 北海道自駕旅遊 - LeeDante
+    </footer>
+    <script src="js/day1.js"></script>
+  </main>
+</body>
+</html>
