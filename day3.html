@@ -59,14 +59,23 @@
         <p>© 2025 北海道自駕旅遊 - LeeDante</p>
     </footer>
 
+
+<section>
+    <h2>💬 小衡心情留言區</h2>
+    <textarea id="note" placeholder="今天有什麼話想說嗎？" rows="4" style="width:600px;margin-bottom:1em;"></textarea><br>
+    <button onclick="saveNote()">💾 儲存留言</button>
+</section>
+
 <section>
     <h2>🎨 小衡手寫塗鴉區</h2>
     <canvas id="canvas" width="600" height="300" style="border:1px solid #ccc;"></canvas><br>
-    <button onclick="clearCanvas()">清除畫面</button>
-    <button onclick="saveCanvas()">儲存圖像</button>
+    <button onclick="clearCanvas()">🧹 清除畫面</button>
+    <button onclick="saveCanvas()">📥 儲存圖像</button>
+    <button onclick="shareCanvas()">📤 分享圖片</button>
 </section>
 
 <script>
+// ====== 手寫塗鴉區 ======
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 let painting = false;
@@ -84,83 +93,29 @@ function draw(e) {
     ctx.lineWidth = 3;
     ctx.lineCap = "round";
     const rect = canvas.getBoundingClientRect();
-    ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+    const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+    const y = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
+    ctx.lineTo(x, y);
     ctx.stroke();
     ctx.beginPath();
-    ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+    ctx.moveTo(x, y);
 }
-
 canvas.addEventListener("mousedown", startPosition);
 canvas.addEventListener("mouseup", endPosition);
 canvas.addEventListener("mousemove", draw);
+canvas.addEventListener("touchstart", startPosition);
+canvas.addEventListener("touchend", endPosition);
+canvas.addEventListener("touchmove", draw);
 
-// 清除畫布
 function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
-
-// 儲存畫布為圖片（下載）
 function saveCanvas() {
     const link = document.createElement('a');
     link.download = 'canvas_drawing.png';
     link.href = canvas.toDataURL();
     link.click();
 }
-</script>
-
-
-<section>
-    <h2>🎨 小衡手寫塗鴉區</h2>
-    <textarea id="note" placeholder="留言：今天有什麼話想說嗎？" rows="4" style="width:600px;margin-bottom:1em;"></textarea><br>
-    <canvas id="canvas" width="600" height="300" style="border:1px solid #ccc;"></canvas><br>
-    <button onclick="clearCanvas()">清除畫面</button>
-    <button onclick="saveCanvas()">儲存圖像</button>
-    <button onclick="shareCanvas()">分享圖片</button>
-    <button onclick="saveNote()">儲存留言文字</button>
-</section>
-
-<script>
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
-let painting = false;
-
-// 畫圖事件處理
-function startPosition(e) {
-    painting = true;
-    draw(e);
-}
-function endPosition() {
-    painting = false;
-    ctx.beginPath();
-}
-function draw(e) {
-    if (!painting) return;
-    ctx.lineWidth = 3;
-    ctx.lineCap = "round";
-    const rect = canvas.getBoundingClientRect();
-    ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
-}
-canvas.addEventListener("mousedown", startPosition);
-canvas.addEventListener("mouseup", endPosition);
-canvas.addEventListener("mousemove", draw);
-
-// 清除畫面
-function clearCanvas() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-}
-
-// 儲存畫面為圖片
-function saveCanvas() {
-    const link = document.createElement('a');
-    link.download = 'canvas_drawing.png';
-    link.href = canvas.toDataURL();
-    link.click();
-}
-
-// 分享圖片
 function shareCanvas() {
     canvas.toBlob(function(blob) {
         const file = new File([blob], "canvas_drawing.png", { type: "image/png" });
@@ -176,10 +131,17 @@ function shareCanvas() {
     });
 }
 
-// 儲存留言
+// ====== 留言儲存區 ======
+const note = document.getElementById('note');
+const noteKey = location.pathname.includes("day2") ? "note_day2" :
+                location.pathname.includes("day3") ? "note_day3" : "note_day1";
+note.value = localStorage.getItem(noteKey) || "";
+note.addEventListener("input", () => {
+    localStorage.setItem(noteKey, note.value);
+});
 function saveNote() {
-    const noteText = document.getElementById("note").value;
-    const blob = new Blob([noteText], { type: "text/plain;charset=utf-8" });
+    const text = note.value;
+    const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
     link.download = "note.txt";
@@ -188,4 +150,3 @@ function saveNote() {
 </script>
 
 </body>
-</html>
