@@ -117,3 +117,13 @@ section:has(#canvas) {
 .back-to-top a:hover {
     background-color: #ddd;
 }
+
+.day-header-info {
+    display: block;
+    text-align: left;
+    margin-top: 1em;
+    margin-bottom: 2em;
+    padding: 1em;
+    background-color: #f8f8ff;
+    border-left: 4px solid #a1c4fd;
+}
