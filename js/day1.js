@@ -1,96 +1,71 @@
 
-function saveNote() {
-  const note = document.getElementById("note").value;
-  localStorage.setItem("day1_note", note);
-}
-window.onload = function() {
+window.onload = function () {
   const savedNote = localStorage.getItem("day1_note");
-  if (savedNote) {
-    document.getElementById("note").value = savedNote;
+  if (savedNote) document.getElementById("note").value = savedNote;
+  loadSavedImages();
+};
+document.getElementById("note").addEventListener("input", function () {
+  localStorage.setItem("day1_note", this.value);
+});
+
+const MAX_IMAGES = 3;
+let imageKeys = ["day1_photo1", "day1_photo2", "day1_photo3"];
+
+function handleImageUpload(event) {
+  const files = Array.from(event.target.files);
+  const existingCount = imageKeys.filter(k => localStorage.getItem(k)).length;
+  if (existingCount + files.length > MAX_IMAGES) {
+    alert("最多只能上傳三張照片唷！");
+    return;
   }
-}
-let canvas = document.getElementById("drawCanvas");
-let ctx = canvas.getContext("2d");
-let drawing = false;
-let history = [];
-canvas.addEventListener("mousedown", start);
-canvas.addEventListener("mousemove", draw);
-canvas.addEventListener("mouseup", stop);
-canvas.addEventListener("mouseout", stop);
-canvas.addEventListener("touchstart", start, { passive: false });
-canvas.addEventListener("touchmove", draw, { passive: false });
-canvas.addEventListener("touchend", stop);
-function start(e) {
-  e.preventDefault();
-  drawing = true;
-  ctx.beginPath();
-  const pos = getPos(e);
-  ctx.moveTo(pos.x, pos.y);
-  saveState();
-}
-function draw(e) {
-  if (!drawing) return;
-  const pos = getPos(e);
-  ctx.lineTo(pos.x, pos.y);
-  ctx.strokeStyle = "#333";
-  ctx.lineWidth = 2;
-  ctx.lineCap = "round";
-  ctx.stroke();
-}
-function stop() {
-  drawing = false;
-  ctx.closePath();
-}
-function getPos(e) {
-  let rect = canvas.getBoundingClientRect();
-  if (e.touches) {
-    return {
-      x: e.touches[0].clientX - rect.left,
-      y: e.touches[0].clientY - rect.top
+  files.slice(0, MAX_IMAGES - existingCount).forEach(file => {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      compressAndStoreImage(e.target.result);
     };
-  } else {
-    return {
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top
-    };
-  }
-}
-function clearCanvas() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-}
-function saveCanvas() {
-  const dataURL = canvas.toDataURL("image/png");
-  const link = document.createElement("a");
-  link.download = "day1_drawing.png";
-  link.href = dataURL;
-  link.click();
-}
-function shareCanvas() {
-  canvas.toBlob(blob => {
-    const file = new File([blob], "day1_drawing.png", { type: "image/png" });
-    if (navigator.canShare && navigator.canShare({ files: [file] })) {
-      navigator.share({
-        title: "小衡的塗鴉作品",
-        text: "來看看我在北海道畫了什麼～",
-        files: [file]
-      }).catch(err => console.log("分享失敗", err));
-    } else {
-      alert("此裝置不支援圖片分享，請改用儲存圖像方式");
-    }
+    reader.readAsDataURL(file);
   });
 }
-function saveState() {
-  history.push(canvas.toDataURL());
-  if (history.length > 30) history.shift();
+
+function compressAndStoreImage(dataUrl) {
+  const img = new Image();
+  img.src = dataUrl;
+  img.onload = () => {
+    const canvas = document.createElement("canvas");
+    const MAX_WIDTH = 300;
+    const scale = MAX_WIDTH / img.width;
+    canvas.width = MAX_WIDTH;
+    canvas.height = img.height * scale;
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    const compressed = canvas.toDataURL("image/jpeg", 0.8);
+    const slot = imageKeys.find(k => !localStorage.getItem(k));
+    if (slot) {
+      localStorage.setItem(slot, compressed);
+      addImagePreview(slot, compressed);
+    }
+  };
 }
-function undo() {
-  if (history.length > 0) {
-    let dataURL = history.pop();
-    let img = new Image();
-    img.src = dataURL;
-    img.onload = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(img, 0, 0);
-    };
-  }
+
+function loadSavedImages() {
+  imageKeys.forEach(key => {
+    const data = localStorage.getItem(key);
+    if (data) addImagePreview(key, data);
+  });
+}
+
+function addImagePreview(key, dataUrl) {
+  const container = document.getElementById("preview-container");
+  const wrapper = document.createElement("div");
+  wrapper.style.position = "relative";
+  wrapper.innerHTML = `
+    <img src="${dataUrl}" style="max-height:150px; border:1px solid #ccc; border-radius:5px;">
+    <button onclick="removeImage('${key}', this)" style="position:absolute;top:2px;right:2px;">🗑️</button>
+  `;
+  container.appendChild(wrapper);
+}
+
+function removeImage(key, btn) {
+  localStorage.removeItem(key);
+  btn.parentElement.remove();
 }
