@@ -1,54 +1,67 @@
-
+<!-- 範例：Day3 頁面 HTML 模板 -->
 <!DOCTYPE html>
-
 <html lang="zh-Hant">
 <head>
-<meta charset="utf-8"/>
-<title>📅 Day 3：摩周湖・美幌峠・阿寒湖</title>
-<link href="css/style.css" rel="stylesheet"/>
+  <meta charset="UTF-8">
+  <title>Day 3｜北海道親子自駕遊</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<nav>
-<h3>行程導航</h3>
-<ul>
-<li><a href="day1.html">0808 第一天<br/>[台灣] → [北海道]</a></li>
-<li><a href="day2.html">0809 第二天<br/>[帶廣] → [釧路]</a></li>
-<li><a href="day3.html">0810 第三天<br/>[摩周湖] → [阿寒湖]</a></li>
-<li><a href="day4.html">0811 第四天<br/>[知床觀光船]</a></li>
-<li><a href="day5.html">0812 第五天<br/>[網走監獄]</a></li>
-<li><a href="day6.html">0813 第六天<br/>[知床五湖]</a></li>
-</ul>
-</nav>
-<main>
-<h1><a href="day2.html">⬅ 前一天</a><span>📅 Day 3：摩周湖・美幌峠・阿寒湖</span><a href="day4.html">下一天 ➡</a></h1>
-<div class="day-header-info">
-<p>📅 日期：2025/08/10（日）</p>
-<p class="child-note"><strong>小衡心裡話：</strong><br/>今天有什麼讓你覺得特別的事情呢？你可以寫下你的感受喔～</p>
-</div>
-<div class="weather-box">
-<img alt="晴朗" src="https://openweathermap.org/img/wn/01d.png"/>
-<div class="info">阿寒湖天氣：晴朗，氣溫 26°C，降雨機率 5%</div>
-</div>
-<section class="card">
-<h2>📍 行程內容</h2>
-<p>這裡是 📅 Day 3：摩周湖・美幌峠・阿寒湖 當日的行程內容，後續可補上實際景點與描述。</p>
-</section>
-<section class="note-area">
-<h2>📝 小衡心情留言板</h2>
-<textarea id="note"></textarea><br/>
-<button onclick="saveNote()">💾 儲存留言</button>
-</section>
-<section class="canvas-area">
-<h2>🎨 小衡手寫塗鴉區</h2>
-<canvas height="400" id="drawCanvas" style="border:1px solid #ccc;" width="600"></canvas><br/>
-<button onclick="undo()">↩️ 回上一步</button>
-<button onclick="clearCanvas()">🧹 清除畫面</button>
-<button onclick="saveCanvas()">💾 儲存圖像</button>
-<button onclick="shareCanvas()">📤 分享圖片</button>
-</section>
-<div class="back-to-top"><a href="#">⬆ 回頂端</a></div>
-<footer>© 2025 北海道自駕旅遊 - LeeDante</footer>
-<script src="js/day3.js"></script>
-</main>
+  <header>
+    <h1>Day 3｜屈斜路湖 → 阿寒湖</h1>
+    <nav>
+      <a href="day2.html">← 前一天</a>
+      <a href="day4.html">下一天 →</a>
+    </nav>
+  </header>
+
+  <section class="date-note">
+    <h2>📅 8月10日（日）</h2>
+    <div class="note-box">
+      <p>小衡：今天會看到好多湖泊跟火山，還有可以挖溫泉的沙灘～</p>
+    </div>
+  </section>
+
+  <section class="weather">
+    <h2>🌤️ 今日天氣（摩周湖 / 阿寒湖）</h2>
+    <p>預測：晴時多雲，氣溫約 20～26°C</p>
+  </section>
+
+  <section class="itinerary">
+    <h2>📍 行程內容</h2>
+    <ul>
+      <li>早上前往 <strong>摩周湖第一展望台</strong> 看藍色湖景</li>
+      <li>中午於 <strong>弟子屈拉麵</strong> 用餐</li>
+      <li>午後造訪 <strong>美幌峠</strong> 展望台</li>
+      <li>短暫停留 <strong>屈斜路湖砂湯</strong> 挖溫泉</li>
+      <li>傍晚抵達 <strong>阿寒湖</strong>，入住御前水酒店</li>
+    </ul>
+  </section>
+
+  <section class="photos">
+    <h2>🖼️ 上傳今日照片</h2>
+    <input type="file" accept="image/*" id="day3_photo_upload" multiple>
+    <div id="day3_photos_preview"></div>
+  </section>
+
+  <section class="note">
+    <h2>📝 小衡留言板</h2>
+    <textarea id="day3_note" placeholder="今天的心情如何呢？"></textarea>
+    <button onclick="saveNote('day3_note')">儲存</button>
+  </section>
+
+  <section class="drawing">
+    <h2>🎨 小衡手寫塗鴉</h2>
+    <canvas id="day3_canvas" width="300" height="300"></canvas><br>
+    <button onclick="undoDrawing('day3')">還原</button>
+    <button onclick="saveDrawing('day3')">儲存</button>
+    <button onclick="shareDrawing('day3')">分享</button>
+  </section>
+
+  <footer>
+    <p>© 2025 北海道親子旅行手冊</p>
+  </footer>
+
+  <script src="main.js"></script>
 </body>
 </html>
