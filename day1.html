@@ -23,8 +23,18 @@
 <div class="day-header-info">
       📅 日期：2025/08/08（五）
       <div class="child-note">小衡心裡話：今天有什麼讓你覺得特別的事情呢？你可以寫下你的感受喔～</div>
-</div>
-<section class="upload-area" style="background-color:#fff5d1; border-left:5px solid #f2c94c; padding:10px; margin-top:30px;">
+</div><section class="weather-area" style="background-color:#eaf7ff; border-left:6px solid #3ab7ff; padding:1em; border-radius:8px; margin-top:2em;">
+<h2>🌤️ 今日天氣（札幌）</h2>
+<p>晴時多雲，氣溫 26°C / 18°C，降雨機率 10%</p>
+</section><section class="itinerary-area" style="background-color:#f7f7f7; border-left:6px solid #999; padding:1em; border-radius:8px; margin-top:2em;">
+<h2>📍 行程安排</h2>
+<ul>
+<li>✈️ 抵達新千歲機場</li>
+<li>🚗 前往札幌市區</li>
+<li>🏨 入住 NUPKA Hanare</li>
+<li>🍴 晚餐自由行（推薦：成吉思汗烤肉或拉麵橫丁）</li>
+</ul>
+</section><section class="upload-area" style="background-color:#fff5d1; border-left:5px solid #f2c94c; padding:10px; margin-top:30px;">
 <h2>🖼️ 小衡旅途照片上傳</h2>
 <p style="font-size:0.9em; color:#444;">
         📸 挑出今天你最想紀念的三張照片吧！<br/>
@@ -32,12 +42,10 @@
       </p>
 <input accept="image/*" multiple="" onchange="handleImageUpload(event)" type="file"/>
 <div id="preview-container" style="display:flex; flex-wrap:wrap; gap:10px; margin-top:10px;"></div>
-</section>
-<section class="note-area">
+</section><section class="note-area">
 <h2>📝 小衡心情留言板</h2>
 <textarea id="note" placeholder="寫下今天的感想吧！"></textarea>
-</section>
-<section class="canvas-area" style="background-color:#fff8dc; border-left:6px solid #f4c542; padding:1em; border-radius:8px; margin-top:2em;">
+</section><section class="canvas-area" style="background-color:#fff8dc; border-left:6px solid #f4c542; padding:1em; border-radius:8px; margin-top:2em;">
 <h2>🎨 小衡手寫塗鴉區</h2>
 <canvas height="300" id="canvas" style="border:1px solid #888; background:white;" width="600"></canvas><br/>
 <button onclick="undoLine()">↩️ 上一步</button>
@@ -46,20 +54,10 @@
 <button onclick="shareCanvas()">📤 分享圖片</button>
 </section>
 
-<section class="itinerary-area" style="background-color:#f7f7f7; border-left:6px solid #999; padding:1em; border-radius:8px; margin-top:2em;">
-<h2>📍 行程安排</h2>
-<ul>
-<li>✈️ 抵達新千歲機場</li>
-<li>🚗 前往札幌市區</li>
-<li>🏨 入住 NUPKA Hanare</li>
-<li>🍴 晚餐自由行（推薦：成吉思汗烤肉或拉麵橫丁）</li>
-</ul>
-</section>
 
-<section class="weather-area" style="background-color:#eaf7ff; border-left:6px solid #3ab7ff; padding:1em; border-radius:8px; margin-top:2em;">
-<h2>🌤️ 今日天氣（札幌）</h2>
-<p>晴時多雲，氣溫 26°C / 18°C，降雨機率 10%</p>
-</section>
+
+
+
 <footer>© 2025 北海道自駕旅遊 - LeeDante</footer>
 </main>
 <script src="js/day1.js"></script>
