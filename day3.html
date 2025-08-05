@@ -1,87 +1,82 @@
-<!-- 範例：Day3 頁面 HTML 模板 -->
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
-  <title>Day 3｜北海道親子自駕遊</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Day 3：第3天行程</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="sidebar">
+  <nav>
+    <h3>行程導航</h3>
     <ul>
-      <li><a href="day1.html">Day 1｜札幌</a></li>
-      <li><a href="day2.html">Day 2｜帶廣 → 釧路</a></li>
-      <li><a href="day3.html" class="active">Day 3｜屈斜路湖 → 阿寒湖</a></li>
-      <li><a href="day4.html">Day 4｜阿寒湖 → 斜里</a></li>
-      <li><a href="day5.html">Day 5｜知床五湖 → 知床夕陽台</a></li>
-      <li><a href="day6.html">Day 6｜觀光船 → 網走</a></li>
-      <li><a href="day7.html">Day 7｜網走 → 北見</a></li>
-      <li><a href="day8.html">Day 8｜層雲峽 → 富良野</a></li>
-      <li><a href="day9.html">Day 9｜旭川 → 美瑛 → 美唄</a></li>
-      <li><a href="day10.html">Day 10｜小樽一日遊</a></li>
-      <li><a href="day11.html">Day 11｜積丹半島 → 洞爺</a></li>
-      <li><a href="day12.html">Day 12｜登別 → 函館</a></li>
-      <li><a href="day13.html">Day 13｜函館 → 白老溫泉</a></li>
-      <li><a href="day14.html">Day 14｜支笏湖 → 札幌</a></li>
-      <li><a href="day15.html">Day 15｜還車 → 機場</a></li>
+      <li><a href="day1.html">08/08 第1天</a></li>
+<li><a href="day2.html">08/09 第2天</a></li>
+<li><a href="day3.html">08/10 第3天</a></li>
+<li><a href="day4.html">08/11 第4天</a></li>
+<li><a href="day5.html">08/12 第5天</a></li>
+<li><a href="day6.html">08/13 第6天</a></li>
+<li><a href="day7.html">08/14 第7天</a></li>
+<li><a href="day8.html">08/15 第8天</a></li>
+<li><a href="day9.html">08/16 第9天</a></li>
+<li><a href="day10.html">08/17 第10天</a></li>
+<li><a href="day11.html">08/18 第11天</a></li>
+<li><a href="day12.html">08/19 第12天</a></li>
+<li><a href="day13.html">08/20 第13天</a></li>
+<li><a href="day14.html">08/21 第14天</a></li>
+<li><a href="day15.html">08/22 第15天</a></li>
+
     </ul>
-  </div>
+  </nav>
+  <main>
+    <h1>
+      <a href="day2.html">⬅ 前一天</a>
+      <span>📅 Day 3：第3天行程</span>
+      <a href="day4.html">下一天 ➡</a>
+    </h1>
 
-  <header>
-    <h1>Day 3｜屈斜路湖 → 阿寒湖</h1>
-    <nav>
-      <a href="day2.html">← 前一天</a>
-      <a href="day4.html">下一天 →</a>
-    </nav>
-  </header>
-
-  <section class="date-note">
-    <h2>📅 8月10日（日）</h2>
-    <div class="note-box">
-      <p>小衡：今天會看到好多湖泊跟火山，還有可以挖溫泉的沙灘～</p>
+    <div class="day-header-info">
+      📅 日期：2025/08/10（四）
+      <div class="child-note">小衡心裡話：今天有什麼想記錄下來的嗎？畫畫或寫字都可以喔！</div>
     </div>
-  </section>
 
-  <section class="weather">
-    <h2>🌤️ 今日天氣（摩周湖 / 阿寒湖）</h2>
-    <p>預測：晴時多雲，氣溫約 20～26°C</p>
-  </section>
+    <section class="weather-area" style="background-color:#eaf7ff; border-left:6px solid #3ab7ff; padding:1em; border-radius:8px; margin-top:2em;">
+      <h2>🌤️ 今日天氣</h2>
+      <p>晴時多雲，氣溫 24°C / 17°C，降雨機率 20%</p>
+    </section>
 
-  <section class="itinerary">
-    <h2>📍 行程內容</h2>
-    <ul>
-      <li>早上前往 <strong>摩周湖第一展望台</strong> 看藍色湖景</li>
-      <li>中午於 <strong>弟子屈拉麵</strong> 用餐</li>
-      <li>午後造訪 <strong>美幌峠</strong> 展望台</li>
-      <li>短暫停留 <strong>屈斜路湖砂湯</strong> 挖溫泉</li>
-      <li>傍晚抵達 <strong>阿寒湖</strong>，入住御前水酒店</li>
-    </ul>
-  </section>
+    <section class="itinerary-area" style="background-color:#f7f7f7; border-left:6px solid #999; padding:1em; border-radius:8px; margin-top:2em;">
+      <h2>📍 行程安排</h2>
+      <ul>
+        <li>📌 行程：、、、、、、、、</li><li>📌 、摩周湖-午餐-美幌峠-屈斜路湖沙湯-阿寒湖飯店、、、、、、、</li><li>📌 、、、、、、、、</li><li>📌 注意事項：、、、、、、、、</li>
+      </ul>
+    </section>
 
-  <section class="photos">
-    <h2>🖼️ 上傳今日照片</h2>
-    <input type="file" accept="image/*" id="day3_photo_upload" multiple>
-    <div id="day3_photos_preview"></div>
-  </section>
+    <section class="upload-area" style="background-color:#fff5d1; border-left:5px solid #f2c94c; padding:10px; margin-top:30px;">
+      <h2>🖼️ 小衡旅途照片上傳</h2>
+      <p style="font-size:0.9em; color:#444;">
+        📸 挑出今天你最想紀念的三張照片吧！<br>
+        （照片將儲存在本機裝置，不會上傳雲端）
+      </p>
+      <input type="file" accept="image/*" multiple onchange="handleImageUpload(event)">
+      <div id="preview-container" style="display:flex; flex-wrap:wrap; gap:10px; margin-top:10px;"></div>
+    </section>
 
-  <section class="note">
-    <h2>📝 小衡留言板</h2>
-    <textarea id="day3_note" placeholder="今天的心情如何呢？"></textarea>
-    <button onclick="saveNote('day3_note')">儲存</button>
-  </section>
+    <section class="note-area">
+      <h2>📝 小衡心情留言板</h2>
+      <textarea id="note" placeholder="寫下今天的感想吧！"></textarea>
+    </section>
 
-  <section class="drawing">
-    <h2>🎨 小衡手寫塗鴉</h2>
-    <canvas id="day3_canvas" width="300" height="300"></canvas><br>
-    <button onclick="undoDrawing('day3')">還原</button>
-    <button onclick="saveDrawing('day3')">儲存</button>
-    <button onclick="shareDrawing('day3')">分享</button>
-  </section>
+    <section class="canvas-area" style="background-color:#fff8dc; border-left:6px solid #f4c542; padding:1em; border-radius:8px; margin-top:2em;">
+      <h2>🎨 小衡手寫塗鴉區</h2>
+      <canvas id="canvas" width="600" height="300" style="border:1px solid #888; background:white;"></canvas><br>
+      <button onclick="undoLine()">↩️ 上一步</button>
+      <button onclick="clearCanvas()">🗑️ 清除畫面</button>
+      <button onclick="saveCanvas()">💾 儲存圖像</button>
+      <button onclick="shareCanvas()">📤 分享圖片</button>
+    </section>
 
-  <footer>
-    <p>© 2025 北海道親子旅行手冊</p>
-  </footer>
-
-  <script src="main.js"></script>
+    <footer>© 2025 北海道自駕旅遊 - LeeDante</footer>
+  </main>
+  <script src="js/day3.js"></script>
 </body>
 </html>

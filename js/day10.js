@@ -1,15 +1,15 @@
 
 window.onload = function () {
-  const savedNote = localStorage.getItem("day6_note");
+  const savedNote = localStorage.getItem("day10_note");
   if (savedNote) document.getElementById("note").value = savedNote;
   loadSavedImages();
 };
 document.getElementById("note").addEventListener("input", function () {
-  localStorage.setItem("day6_note", this.value);
+  localStorage.setItem("day10_note", this.value);
 });
 
 const MAX_IMAGES = 3;
-let imageKeys = ["day6_photo1", "day6_photo2", "day6_photo3"];
+let imageKeys = ["day10_photo1", "day10_photo2", "day10_photo3"];
 
 function handleImageUpload(event) {
   const files = Array.from(event.target.files);
