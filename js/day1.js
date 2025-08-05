@@ -69,3 +69,101 @@ function removeImage(key, btn) {
   localStorage.removeItem(key);
   btn.parentElement.remove();
 }
+
+
+let canvas = document.getElementById("canvas");
+let ctx = canvas?.getContext("2d");
+let drawing = false;
+let lines = [], currentLine = [];
+
+if (canvas) {
+  canvas.addEventListener("mousedown", startDraw);
+  canvas.addEventListener("mousemove", draw);
+  canvas.addEventListener("mouseup", endDraw);
+  canvas.addEventListener("touchstart", startDrawTouch);
+  canvas.addEventListener("touchmove", drawTouch);
+  canvas.addEventListener("touchend", endDraw);
+}
+
+function startDraw(e) {
+  drawing = true;
+  currentLine = [];
+  ctx.beginPath();
+  let x = e.offsetX, y = e.offsetY;
+  ctx.moveTo(x, y);
+  currentLine.push([x, y]);
+}
+
+function draw(e) {
+  if (!drawing) return;
+  let x = e.offsetX, y = e.offsetY;
+  ctx.lineTo(x, y);
+  ctx.stroke();
+  currentLine.push([x, y]);
+}
+
+function endDraw() {
+  if (drawing) {
+    drawing = false;
+    lines.push(currentLine);
+  }
+}
+
+function startDrawTouch(e) {
+  e.preventDefault();
+  let rect = canvas.getBoundingClientRect();
+  let touch = e.touches[0];
+  let x = touch.clientX - rect.left;
+  let y = touch.clientY - rect.top;
+  startDraw({ offsetX: x, offsetY: y });
+}
+
+function drawTouch(e) {
+  e.preventDefault();
+  let rect = canvas.getBoundingClientRect();
+  let touch = e.touches[0];
+  let x = touch.clientX - rect.left;
+  let y = touch.clientY - rect.top;
+  draw({ offsetX: x, offsetY: y });
+}
+
+function clearCanvas() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  lines = [];
+}
+
+function undoLine() {
+  lines.pop();
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  lines.forEach(line => {
+    ctx.beginPath();
+    ctx.moveTo(line[0][0], line[0][1]);
+    for (let i = 1; i < line.length; i++) {
+      ctx.lineTo(line[i][0], line[i][1]);
+    }
+    ctx.stroke();
+  });
+}
+
+function saveCanvas() {
+  let link = document.createElement("a");
+  link.download = "canvas.png";
+  link.href = canvas.toDataURL("image/png");
+  link.click();
+}
+
+function shareCanvas() {
+  let dataUrl = canvas.toDataURL("image/png");
+  if (navigator.canShare && navigator.canShare({ files: [] })) {
+    canvas.toBlob(blob => {
+      const file = new File([blob], "canvas.png", { type: "image/png" });
+      navigator.share({
+        files: [file],
+        title: "畫圖分享",
+        text: "這是我今天畫的圖！"
+      });
+    });
+  } else {
+    alert("此裝置不支援分享功能");
+  }
+}
